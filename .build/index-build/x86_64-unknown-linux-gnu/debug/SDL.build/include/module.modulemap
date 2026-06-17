@@ -1,0 +1,3 @@
+module SDL {
+    header "/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/SDL.build/include/SDL-Swift.h"
+}

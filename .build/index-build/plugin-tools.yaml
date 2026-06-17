@@ -1,0 +1,126 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "SDL-x86_64-unknown-linux-gnu-debug.module": ["<SDL-x86_64-unknown-linux-gnu-debug.module>"]
+  "chitt8-x86_64-unknown-linux-gnu-debug.module": ["<chitt8-x86_64-unknown-linux-gnu-debug.module>"]
+  "chitt8PackageDiscoveredTests-x86_64-unknown-linux-gnu-debug.module": ["<chitt8PackageDiscoveredTests-x86_64-unknown-linux-gnu-debug.module>"]
+  "chitt8PackageTests-x86_64-unknown-linux-gnu-debug.module": ["<chitt8PackageTests-x86_64-unknown-linux-gnu-debug.module>"]
+  "chitt8Tests-x86_64-unknown-linux-gnu-debug.module": ["<chitt8Tests-x86_64-unknown-linux-gnu-debug.module>"]
+  "main": ["<chitt8-x86_64-unknown-linux-gnu-debug.module>"]
+  "test": ["<chitt8-x86_64-unknown-linux-gnu-debug.module>","<chitt8Tests-x86_64-unknown-linux-gnu-debug.module>"]
+default: "main"
+nodes:
+  "/home/mayakovskiyy/chitt8/chitt8/Sources/chitt8/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/home/mayakovskiyy/chitt8/chitt8/Tests/chitt8Tests/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/SDL.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/checkouts/SwiftSDL2/Sources/SDL2/SDL2.swift"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/SDL.build/sources"]
+    description: "Write auxiliary file /home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/SDL.build/sources"
+
+  "/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/home/mayakovskiyy/chitt8/chitt8/Sources/chitt8/chitt8.swift"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8.build/sources"]
+    description: "Write auxiliary file /home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8.build/sources"
+
+  "/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.derived/all-discovered-tests.swift","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.derived/chitt8Tests.swift"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.build/sources"]
+    description: "Write auxiliary file /home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.build/sources"
+
+  "/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageTests.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageTests.derived/runner.swift"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageTests.build/sources"]
+    description: "Write auxiliary file /home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageTests.build/sources"
+
+  "/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8Tests.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/home/mayakovskiyy/chitt8/chitt8/Tests/chitt8Tests/chitt8Tests.swift"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8Tests.build/sources"]
+    description: "Write auxiliary file /home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8Tests.build/sources"
+
+  "/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--45793DA4A8DCE3DD.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/home/mayakovskiyy/.local/share/swiftly/toolchains/6.3.2/usr/bin/swiftc"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--45793DA4A8DCE3DD.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--45793DA4A8DCE3DD.txt"
+
+  "<SDL-x86_64-unknown-linux-gnu-debug.module>":
+    tool: phony
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/SDL.swiftmodule"]
+    outputs: ["<SDL-x86_64-unknown-linux-gnu-debug.module>"]
+
+  "<chitt8-x86_64-unknown-linux-gnu-debug.module>":
+    tool: phony
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8.swiftmodule"]
+    outputs: ["<chitt8-x86_64-unknown-linux-gnu-debug.module>"]
+
+  "<chitt8PackageDiscoveredTests-x86_64-unknown-linux-gnu-debug.module>":
+    tool: phony
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8PackageDiscoveredTests.swiftmodule"]
+    outputs: ["<chitt8PackageDiscoveredTests-x86_64-unknown-linux-gnu-debug.module>"]
+
+  "<chitt8PackageTests-x86_64-unknown-linux-gnu-debug.module>":
+    tool: phony
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8PackageTests.swiftmodule"]
+    outputs: ["<chitt8PackageTests-x86_64-unknown-linux-gnu-debug.module>"]
+
+  "<chitt8Tests-x86_64-unknown-linux-gnu-debug.module>":
+    tool: phony
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8Tests.swiftmodule"]
+    outputs: ["<chitt8Tests-x86_64-unknown-linux-gnu-debug.module>"]
+
+  "C.SDL-x86_64-unknown-linux-gnu-debug.module":
+    tool: shell
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/checkouts/SwiftSDL2/Sources/SDL2/SDL2.swift","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--45793DA4A8DCE3DD.txt","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/SDL.build/sources"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/SDL.swiftmodule"]
+    description: "Compiling Swift Module 'SDL' (1 sources)"
+    args: ["/home/mayakovskiyy/.local/share/swiftly/toolchains/6.3.2/usr/bin/swiftc","-module-name","SDL","-emit-dependencies","-emit-module","-emit-module-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/SDL.swiftmodule","-output-file-map","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/SDL.build/output-file-map.json","-parse-as-library","-incremental","@/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/SDL.build/sources","-I","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules","-target","x86_64-unknown-linux-gnu","-incremental","-enable-batch-mode","-serialize-diagnostics","-Onone","-enable-testing","-j12","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-Xcc","-fmodule-map-file=/home/mayakovskiyy/chitt8/chitt8/.build/index-build/checkouts/SwiftSDL2/Sources/CSDL2/module.modulemap","-module-cache-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/SDL.build/include/SDL-Swift.h","-swift-version","5","-Xfrontend","-experimental-lazy-typecheck","-Xfrontend","-experimental-skip-all-function-bodies","-Xfrontend","-experimental-allow-module-with-compiler-errors","-Xfrontend","-empty-abi-descriptor","-g","-Xcc","-fPIC","-Xcc","-g","-suppress-warnings","-Xcc","-fno-omit-frame-pointer"]
+
+  "C.chitt8-x86_64-unknown-linux-gnu-debug.module":
+    tool: shell
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/Sources/chitt8/chitt8.swift","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--45793DA4A8DCE3DD.txt","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/SDL.swiftmodule","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8.build/sources"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8.swiftmodule"]
+    description: "Compiling Swift Module 'chitt8' (1 sources)"
+    args: ["/home/mayakovskiyy/.local/share/swiftly/toolchains/6.3.2/usr/bin/swiftc","-module-name","chitt8","-emit-dependencies","-emit-module","-emit-module-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8.swiftmodule","-output-file-map","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8.build/output-file-map.json","-incremental","@/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8.build/sources","-I","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules","-target","x86_64-unknown-linux-gnu","-incremental","-enable-batch-mode","-serialize-diagnostics","-Onone","-enable-testing","-j12","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-Xcc","-fmodule-map-file=/home/mayakovskiyy/chitt8/chitt8/.build/index-build/checkouts/SwiftSDL2/Sources/CSDL2/module.modulemap","-module-cache-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","chitt8_main","-swift-version","6","-Xfrontend","-experimental-lazy-typecheck","-Xfrontend","-experimental-skip-all-function-bodies","-Xfrontend","-experimental-allow-module-with-compiler-errors","-Xfrontend","-empty-abi-descriptor","-g","-Xcc","-fPIC","-Xcc","-g","-package-name","chitt8","-Xcc","-fno-omit-frame-pointer"]
+
+  "C.chitt8PackageDiscoveredTests-x86_64-unknown-linux-gnu-debug.module":
+    tool: shell
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.derived/all-discovered-tests.swift","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.derived/chitt8Tests.swift","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--45793DA4A8DCE3DD.txt","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8Tests.swiftmodule","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.build/sources"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8PackageDiscoveredTests.swiftmodule"]
+    description: "Compiling Swift Module 'chitt8PackageDiscoveredTests' (2 sources)"
+    args: ["/home/mayakovskiyy/.local/share/swiftly/toolchains/6.3.2/usr/bin/swiftc","-module-name","chitt8PackageDiscoveredTests","-emit-dependencies","-emit-module","-emit-module-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8PackageDiscoveredTests.swiftmodule","-output-file-map","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.build/output-file-map.json","-parse-as-library","-incremental","@/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.build/sources","-I","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules","-target","x86_64-unknown-linux-gnu","-incremental","-enable-batch-mode","-serialize-diagnostics","-Onone","-enable-testing","-Xfrontend","-enable-cross-import-overlays","-j12","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-Xcc","-fmodule-map-file=/home/mayakovskiyy/chitt8/chitt8/.build/index-build/checkouts/SwiftSDL2/Sources/CSDL2/module.modulemap","-module-cache-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageDiscoveredTests.build/include/chitt8PackageDiscoveredTests-Swift.h","-Xfrontend","-experimental-lazy-typecheck","-Xfrontend","-experimental-skip-all-function-bodies","-Xfrontend","-experimental-allow-module-with-compiler-errors","-Xfrontend","-empty-abi-descriptor","-g","-Xcc","-fPIC","-Xcc","-g","-package-name","chitt8","-Xcc","-fno-omit-frame-pointer"]
+
+  "C.chitt8PackageTests-x86_64-unknown-linux-gnu-debug.module":
+    tool: shell
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageTests.derived/runner.swift","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--45793DA4A8DCE3DD.txt","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8Tests.swiftmodule","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8PackageDiscoveredTests.swiftmodule","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageTests.build/sources"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8PackageTests.swiftmodule"]
+    description: "Compiling Swift Module 'chitt8PackageTests' (1 sources)"
+    args: ["/home/mayakovskiyy/.local/share/swiftly/toolchains/6.3.2/usr/bin/swiftc","-module-name","chitt8PackageTests","-emit-dependencies","-emit-module","-emit-module-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8PackageTests.swiftmodule","-output-file-map","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageTests.build/output-file-map.json","-parse-as-library","-incremental","@/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageTests.build/sources","-I","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules","-target","x86_64-unknown-linux-gnu","-incremental","-enable-batch-mode","-serialize-diagnostics","-Onone","-enable-testing","-Xfrontend","-enable-cross-import-overlays","-j12","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-Xcc","-fmodule-map-file=/home/mayakovskiyy/chitt8/chitt8/.build/index-build/checkouts/SwiftSDL2/Sources/CSDL2/module.modulemap","-module-cache-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8PackageTests.build/include/chitt8PackageTests-Swift.h","-Xfrontend","-experimental-lazy-typecheck","-Xfrontend","-experimental-skip-all-function-bodies","-Xfrontend","-experimental-allow-module-with-compiler-errors","-Xfrontend","-empty-abi-descriptor","-g","-Xcc","-fPIC","-Xcc","-g","-package-name","chitt8","-Xcc","-fno-omit-frame-pointer"]
+
+  "C.chitt8Tests-x86_64-unknown-linux-gnu-debug.module":
+    tool: shell
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/Tests/chitt8Tests/chitt8Tests.swift","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/swift-version--45793DA4A8DCE3DD.txt","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8.swiftmodule","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8Tests.build/sources"]
+    outputs: ["/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8Tests.swiftmodule"]
+    description: "Compiling Swift Module 'chitt8Tests' (1 sources)"
+    args: ["/home/mayakovskiyy/.local/share/swiftly/toolchains/6.3.2/usr/bin/swiftc","-module-name","chitt8Tests","-emit-dependencies","-emit-module","-emit-module-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules/chitt8Tests.swiftmodule","-output-file-map","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8Tests.build/output-file-map.json","-parse-as-library","-incremental","@/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/chitt8Tests.build/sources","-I","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/Modules","-target","x86_64-unknown-linux-gnu","-incremental","-enable-batch-mode","-serialize-diagnostics","-Onone","-enable-testing","-Xfrontend","-enable-cross-import-overlays","-j12","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-Xcc","-fmodule-map-file=/home/mayakovskiyy/chitt8/chitt8/.build/index-build/checkouts/SwiftSDL2/Sources/CSDL2/module.modulemap","-module-cache-path","/home/mayakovskiyy/chitt8/chitt8/.build/index-build/x86_64-unknown-linux-gnu/debug/ModuleCache","-parseable-output","-parse-as-library","-swift-version","6","-Xfrontend","-experimental-lazy-typecheck","-Xfrontend","-experimental-skip-all-function-bodies","-Xfrontend","-experimental-allow-module-with-compiler-errors","-Xfrontend","-empty-abi-descriptor","-g","-Xcc","-fPIC","-Xcc","-g","-package-name","chitt8","-Xcc","-fno-omit-frame-pointer"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/home/mayakovskiyy/chitt8/chitt8/Sources/chitt8/","/home/mayakovskiyy/chitt8/chitt8/Tests/chitt8Tests/","/home/mayakovskiyy/chitt8/chitt8/Package.swift","/home/mayakovskiyy/chitt8/chitt8/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+
