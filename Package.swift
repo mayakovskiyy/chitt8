@@ -3,10 +3,14 @@
 
 import PackageDescription
 
+let cSettings: [CSetting] = [
+    .unsafeFlags(["-I", "/home/linuxbrew/.linuxbrew/include/SDL2"])
+]
+
 let package = Package(
     name: "chitt8",
     dependencies: [
-        .package(url: "https://github.com/ctreffs/SwiftSDL2", from: "1.4.0")
+        .package(url: "https://github.com/ctreffs/SwiftSDL2.git", from: "1.4.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -15,11 +19,16 @@ let package = Package(
             name: "chitt8",
             dependencies: [
                 .product(name: "SDL", package: "SwiftSDL2")
+            ],
+            cSettings: cSettings,
+            linkerSettings: [
+                .linkedLibrary("SDL2")
             ]
         ),
         .testTarget(
             name: "chitt8Tests",
-            dependencies: ["chitt8"]
+            dependencies: ["chitt8"],
+            cSettings: cSettings
         ),
     ],
 
