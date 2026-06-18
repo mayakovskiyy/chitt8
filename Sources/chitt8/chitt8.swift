@@ -17,6 +17,7 @@ var kp = [Bool](repeating: false, count: 16)
 
 let window = SDL_CreateWindow(
     "chitt8 - A CHIP-8 EMULATOR", 0x2FFF_0000, 0x2FFF_0000, 640, 320, 0)
+let renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED.rawValue)
 
 var quit = false
 var event = SDL_Event()
@@ -46,9 +47,16 @@ while !quit {
             quit = true
         }
     }
+    if renderer == nil {
+        print("Ошибка создания рендерера: \(String(cString: SDL_GetError()))")
+    }
+    SDL_SetRenderDrawColor(window, 0, 0, 0, 255)
+    SDL_RenderClear(window)
+    SDL_RenderPresent(window)
+
     SDL_Delay(100)
 }
 
+SDL_DestroyRenderer(renderer)
 SDL_DestroyWindow(window)
-
 SDL_Quit()
