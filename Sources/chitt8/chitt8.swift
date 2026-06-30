@@ -1,62 +1,43 @@
 import Foundation
-import SDL
+import AppKit
 
-guard SDL_Init(SDL_INIT_VIDEO) == 0 else {
-    fatalError("SDL could not initialize! SDL_Error: \(String(cString: SDL_GetError()))")
-}
-var memory = [UInt8](repeating: 0, count: 4096)
-var V = [UInt8](repeating: 0, count: 16)
-var I: UInt16 = 0
-var pc = 0x200  // 512
-var delayTimer: UInt8 = 0
-var soundTimer: UInt8 = 0
-var display = [Bool](repeating: false, count: 64 * 32)
-var stack = [UInt16](repeating: 0, count: 16)
-var sp: UInt16 = 0
-var kp = [Bool](repeating: false, count: 16)
-
-let window = SDL_CreateWindow(
-    "chitt8 - A CHIP-8 EMULATOR", 0x2FFF_0000, 0x2FFF_0000, 640, 320, 0)
-let renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED.rawValue)
-
-var quit = false
-var event = SDL_Event()
-
-let fontset: [UInt8] = [
-    0xF0, 0x90, 0x90, 0x90, 0xF0,  // 0
-    0x20, 0x60, 0x20, 0x20, 0x70,  // 1
-    0xF0, 0x10, 0xF0, 0x80, 0xF0,  // 2
-    0xF0, 0x10, 0xF0, 0x10, 0xF0,  // 3
-    0x90, 0x90, 0xF0, 0x10, 0x10,  // 4
-    0xF0, 0x80, 0xF0, 0x10, 0xF0,  // 5
-    0xF0, 0x80, 0xF0, 0x90, 0xF0,  // 6
-    0xF0, 0x10, 0x20, 0x40, 0x40,  // 7
-    0xF0, 0x90, 0xF0, 0x90, 0xF0,  // 8
-    0xF0, 0x90, 0xF0, 0x10, 0xF0,  // 9
-    0xF0, 0x90, 0xF0, 0x90, 0x90,  // A
-    0xE0, 0x90, 0xE0, 0x90, 0xE0,  // B
-    0xF0, 0x80, 0x80, 0x80, 0xF0,  // C
-    0xE0, 0x90, 0x90, 0x90, 0xE0,  // D
-    0xF0, 0x80, 0xF0, 0x80, 0xF0,  // E
-    0xF0, 0x80, 0xF0, 0x80, 0x80,  // F
-]
-
-while !quit {
-    while SDL_PollEvent(&event) > 0 {
-        if event.type == SDL_QUIT.rawValue {
-            quit = true
-        }
+@MainActor
+class Chip8 {
+    var memory = [UInt8](repeating: 0, count: 4096)
+    var V = [UInt8](repeating: 0, count: 16)
+    var I: UInt16 = 0
+    var pc: UInt16 = 0x200
+    var delayTimer: UInt8 = 0
+    var soundTimer: UInt8 = 0
+    var display = [Bool](repeating: false, count: 64 * 32)
+    var stack = [UInt16](repeating:  0, count: 16)
+    var sp: UInt16 = 0
+    var kp = [Bool](repeating: false, count: 16)
+    
+    var window: NSWindow
+    
+    let fontset: [UInt8] = [
+        0xF0, 0x90, 0x90, 0x90, 0xF0,  // 0
+        0x20, 0x60, 0x20, 0x20, 0x70,  // 1
+        0xF0, 0x10, 0xF0, 0x80, 0xF0,  // 2
+        0xF0, 0x10, 0xF0, 0x10, 0xF0,  // 3
+        0x90, 0x90, 0xF0, 0x10, 0x10,  // 4
+        0xF0, 0x80, 0xF0, 0x10, 0xF0,  // 5
+        0xF0, 0x80, 0xF0, 0x90, 0xF0,  // 6
+        0xF0, 0x10, 0x20, 0x40, 0x40,  // 7
+        0xF0, 0x90, 0xF0, 0x90, 0xF0,  // 8
+        0xF0, 0x90, 0xF0, 0x10, 0xF0,  // 9
+        0xF0, 0x90, 0xF0, 0x90, 0x90,  // A
+        0xE0, 0x90, 0xE0, 0x90, 0xE0,  // B
+        0xF0, 0x80, 0x80, 0x80, 0xF0,  // C
+        0xE0, 0x90, 0x90, 0x90, 0xE0,  // D
+        0xF0, 0x80, 0xF0, 0x80, 0xF0,  // E
+        0xF0, 0x80, 0xF0, 0x80, 0x80,  // F
+    ]
+    
+    init() {
+        let rect = NSRect(x: 100, y: 200, width: 640, height: 320)
+        let styleMask: NSWindow.StyleMask = [.titled, .closable, .miniaturizable, .fullSizeContentView]
+        self.window = NSWindow(contentRect: rect, styleMask: styleMask, backing: .buffered, defer: false)
     }
-    if renderer == nil {
-        print("Ошибка создания рендерера: \(String(cString: SDL_GetError()))")
-    }
-    SDL_SetRenderDrawColor(window, 0, 0, 0, 255)
-    SDL_RenderClear(window)
-    SDL_RenderPresent(window)
-
-    SDL_Delay(100)
 }
-
-SDL_DestroyRenderer(renderer)
-SDL_DestroyWindow(window)
-SDL_Quit()
