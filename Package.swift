@@ -12,11 +12,7 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "chitt8",
-            dependencies: [],
-            linkerSettings: [
-                .linkedFramework("AppKit")
-            ]
+            name: "chitt8"
         )
     ]
 )

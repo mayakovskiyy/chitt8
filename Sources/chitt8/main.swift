@@ -2,7 +2,7 @@ import Foundation
 import AppKit
 
 @MainActor
-class Chip8 {
+class Chitt8 {
     var memory = [UInt8](repeating: 0, count: 4096)
     var V = [UInt8](repeating: 0, count: 16)
     var I: UInt16 = 0
@@ -14,7 +14,7 @@ class Chip8 {
     var sp: UInt16 = 0
     var kp = [Bool](repeating: false, count: 16)
     
-    var window: NSWindow
+    var window: NSWindow?
     
     let fontset: [UInt8] = [
         0xF0, 0x90, 0x90, 0x90, 0xF0,  // 0
@@ -37,7 +37,17 @@ class Chip8 {
     
     init() {
         let rect = NSRect(x: 100, y: 200, width: 640, height: 320)
-        let styleMask: NSWindow.StyleMask = [.titled, .closable, .miniaturizable, .fullSizeContentView]
-        self.window = NSWindow(contentRect: rect, styleMask: styleMask, backing: .buffered, defer: false)
+        let style_mask: NSWindow.StyleMask = [.titled, .closable, .miniaturizable, .fullSizeContentView]
+        self.window = NSWindow(contentRect: rect, styleMask: style_mask, backing: .buffered, defer: false)
+        
+        window?.title = "chitt8 - THE CHIP-8 EMULATOR"
+        window?.center()
+        
+        let view_controller = NSViewController()
+        view_controller.view = NSView(frame: rect)
+        view_controller.view.wantsLayer = true
+        view_controller.view.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+        
+        window?.makeKeyAndOrderFront(nil)
     }
 }
